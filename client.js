@@ -1,17 +1,7 @@
 const net = require('net');
 
 const connect = function() {
-  const setupInput = function() {
-    const stdin = process.stdin;
-    stdin.setRawMode(true);
-    stdin.setEncoding('utf8');
-    stdin.on('data', (key) => {
-      if (key === '\u0003') { //control + c
-        process.exit();
-      }});
-    stdin.resume();
-    return stdin;
-  };//stdin setup
+
   
   const conn = net.createConnection({ 
     host: '192.168.88.151',
