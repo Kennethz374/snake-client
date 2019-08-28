@@ -1,28 +1,27 @@
 const net = require('net');
 
 const connect = function() {
+  const setupInput = function() {
+    const stdin = process.stdin;
+    stdin.setRawMode(true);
+    stdin.setEncoding('utf8');
+    stdin.on('data', (key) => {
+      if (key === '\u0003') { //control + c
+        process.exit();
+      }});
+    stdin.resume();
+    return stdin;
+  };//stdin setup
+  
   const conn = net.createConnection({ 
     host: '192.168.88.151',
     port: 50541
     
   });
-
-  // setTimeout(() => {
-  //   console.log('4311o');
-  // }, 1000);
-  
-  conn.on('connect', () => {
-    setInterval (() => {
-      conn.write("Move: up");}, 50);
-    setInterval (() => {
-      conn.write("Move: down");}, 150);
-    setInterval (() => {
-      conn.write("Move: left");}, 200);
-    setInterval (() => {
-      conn.write("Move: right");}, 100);
-  });//movement
-
-
+  // conn.on('connect', () => {
+  //   setInterval (() => {
+  //     conn.write("Move: up");}, 50);
+  // });//movement
 
   conn.on('connect', () => {
     conn.write('Name: KEN');
