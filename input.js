@@ -16,6 +16,8 @@ const setupInput = function(conn) {
       conn.write("Move: left");
     } if (key === "d") {
       conn.write("Move: right");
+    } if (key === "p") {
+      conn.write("Say: SUP?");
     }
 
   });
