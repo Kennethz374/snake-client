@@ -6,7 +6,24 @@ const connect = function() {
     port: 50541
     
   });
+
+  // setTimeout(() => {
+  //   console.log('4311o');
+  // }, 1000);
   
+  conn.on('connect', () => {
+    setInterval (() => {
+      conn.write("Move: up");}, 50);
+    setInterval (() => {
+      conn.write("Move: down");}, 150);
+    setInterval (() => {
+      conn.write("Move: left");}, 200);
+    setInterval (() => {
+      conn.write("Move: right");}, 100);
+  });//movement
+
+
+
   conn.on('connect', () => {
     conn.write('Name: KEN');
   });//print out name sending server message
